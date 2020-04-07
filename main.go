@@ -23,7 +23,8 @@ func main() {
 	pflag.Parse()
 
 	viper.BindPFlags(pflag.CommandLine)
-	viper.BindEnv("port")
+	viper.AutomaticEnv()
+
 	port := viper.GetInt("port")
 
 	http.HandleFunc("/", handler)
