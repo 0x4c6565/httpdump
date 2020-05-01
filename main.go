@@ -15,11 +15,13 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, err.Error(), 500)
 	}
+	w.WriteHeader(viper.GetInt("status-code"))
 	fmt.Fprint(w, string(b))
 }
 
 func main() {
 	pflag.Int("port", 8080, "port to listen on")
+	pflag.Int("status-code", 200, "status code to return")
 	pflag.Parse()
 
 	viper.BindPFlags(pflag.CommandLine)
