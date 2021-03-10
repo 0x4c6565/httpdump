@@ -17,11 +17,16 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(viper.GetInt("status-code"))
 	fmt.Fprint(w, string(b))
+
+	if viper.GetBool("log") {
+		log.Print(string(b))
+	}
 }
 
 func main() {
 	pflag.Int("port", 8080, "port to listen on")
 	pflag.Int("status-code", 200, "status code to return")
+	pflag.Bool("log", false, "specifies to log requests to stdout")
 	pflag.Parse()
 
 	viper.BindPFlags(pflag.CommandLine)

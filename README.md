@@ -6,3 +6,4 @@ Dumps out HTTP requests (including request body)
 
 * `--port`: Port to listen on (default `8080`)
 * `--status-code`: Status code to return (default `200`)
+* `--log`: Specifies to log requests to stdout (default `false`)
